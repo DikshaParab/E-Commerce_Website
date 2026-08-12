@@ -5,6 +5,7 @@ const Header = () => {
       <nav className="flex gap-6 text-gray-600 font-medium">
         <span className="cursor-pointer hover:text-gray-900">Home</span>
         <span className="cursor-pointer hover:text-gray-900">Products</span>
+        <span className="cursor-pointer hover:text-gray-900">About</span>
         <span className="cursor-pointer hover:text-gray-900">Cart</span>
       </nav>
     </header>
