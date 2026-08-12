@@ -1,9 +1,9 @@
 const Footer = () => {
-    return (
-        <footer>
-            <p>© 2026 UrbanCart. All rights reserved.</p>
-        </footer>
-    );
+  return (
+    <footer className="mt-12 py-6 text-center text-sm text-gray-500 border-t">
+      <p>© 2026 Horizon. All rights reserved.</p>
+    </footer>
+  );
 };
 
 export default Footer;
