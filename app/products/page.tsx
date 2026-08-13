@@ -18,12 +18,8 @@ export default function ProductsPage() {
         <>
         <Header/>
         <main>
-            <section className="text-center py-10">
-                <h1 className="text-3xl font-bold text-white">Our Products</h1>
-
-                <p className="mt-2 ext-gray-600">
-                    Explore our collection of Products.
-                </p>
+            <section className="text-center py-6">
+                <h1 className="text-3xl font-bold text-teal-500">Our Products</h1>
             </section>
 
             <ProductFilter/>
