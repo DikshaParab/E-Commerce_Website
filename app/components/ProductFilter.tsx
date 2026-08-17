@@ -5,10 +5,11 @@ interface ProductFilterProps {
     category: string;
     onSearchChange: (value: string) => void;
     onCategoryChange: (value: string) => void;
+    categories: string[];
 }
 
 const ProductFilter = ({
-    search, category, onSearchChange, onCategoryChange}: ProductFilterProps) => {
+    search, category, onSearchChange, onCategoryChange, categories}: ProductFilterProps) => {
 
     return (
         <div>
@@ -21,9 +22,11 @@ const ProductFilter = ({
             <select value={category}
             onChange={(event) => onCategoryChange(event.target.value)}>
                 <option value="All">All</option>
-                <option value="Electronics">Electronics</option>
-                <option value="Clothes">Clothes</option>
-                <option value="Jewellery">Jewellery</option>
+                {categories.map((cat) => (
+                    <option key={cat} value={cat}>
+                        {cat}
+                    </option>
+                ))}
             </select>
 
             <p>Search: {search} </p>

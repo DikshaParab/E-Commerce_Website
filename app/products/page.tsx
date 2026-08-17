@@ -1,6 +1,6 @@
 "use client";
 
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../Header";
 import Footer from "../Footer";
 import ProductCard from "../components/ProductCard";
@@ -11,6 +11,7 @@ interface Product {
     name: string;
     price: number;
     category: string;
+    image:string;
 }
 
 export default function ProductsPage() {
@@ -35,6 +36,7 @@ export default function ProductsPage() {
                     name: item.title,
                     price: item.price,
                     category: item.category,
+                    image: item.image,
                 }));
 
                 setProducts(formatted);
@@ -47,6 +49,8 @@ export default function ProductsPage() {
         fetchProducts();
     }, [])
 
+    const uniqueCategories = Array.from(new Set(products.map((p) => p.category)));
+    
     const filteredProducts = products.filter((product) => {
         const matchesSearch = product.name.toLowerCase().includes(search.toLowerCase());
         const matchesCategory = category === "All" || product.category === category;
@@ -65,16 +69,17 @@ export default function ProductsPage() {
             search={search}
             category={category}
             onSearchChange={setSearch}
-            onCategoryChange={setCategory}/>
+            onCategoryChange={setCategory}
+            categories={uniqueCategories}/>
 
             <div className="max-w-6xl mx-auto px-6 pb-10">
-                {loading && <p className="text center py-10">Loading Products...</p>}
-                {error && <p className="text center py-10 text-red-500">{error}</p>}
+                {loading && <p className="text-center py-10">Loading Products...</p>}
+                {error && <p className="text-center py-10 text-red-500">{error}</p>}
 
                 {!loading && !error && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                         {filteredProducts.map((product) => (
-                            <ProductCard key={product.id} name={product.name} price={product.price} />
+                            <ProductCard key={product.id} name={product.name} price={product.price} image={product.image}/>
                         ))}
                     </div>
                 )}                
