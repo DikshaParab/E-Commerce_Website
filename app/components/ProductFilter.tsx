@@ -1,10 +1,14 @@
 "use client"
 
-import { useState } from "react";
+interface ProductFilterProps {
+    search: string;
+    category: string;
+    onSearchChange: (value: string) => void;
+    onCategoryChange: (value: string) => void;
+}
 
-const ProductFilter = () => {
-    const [search, setSearch] = useState("");
-    const [category, setCategory] = useState("All");
+const ProductFilter = ({
+    search, category, onSearchChange, onCategoryChange}: ProductFilterProps) => {
 
     return (
         <div>
@@ -12,18 +16,18 @@ const ProductFilter = () => {
             <input type="text"
             placeholder="Search Products..."
             value={search}
-            onChange={(event) => setSearch(event.target.value)}/>
+            onChange={(event) => onSearchChange(event.target.value)}/>
 
             <select value={category}
-            onChange={(event) => setCategory(event.target.value)}>
+            onChange={(event) => onCategoryChange(event.target.value)}>
                 <option value="All">All</option>
                 <option value="Electronics">Electronics</option>
                 <option value="Clothes">Clothes</option>
                 <option value="Jewellery">Jewellery</option>
             </select>
 
-            <p>Search: </p>
-            <p>Category: </p>
+            <p>Search: {search} </p>
+            <p>Category: {category} </p>
         </div>
     );
 };
