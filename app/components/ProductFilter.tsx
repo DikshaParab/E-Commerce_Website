@@ -1,5 +1,7 @@
 "use client"
 
+import { useRef, useEffect } from "react";
+
 interface ProductFilterProps {
     search: string;
     category: string;
@@ -10,6 +12,11 @@ interface ProductFilterProps {
 
 const ProductFilter = ({
     search, category, onSearchChange, onCategoryChange, categories}: ProductFilterProps) => {
+        const searchInputRef = useRef<HTMLInputElement>(null);
+
+        useEffect(() => {
+            searchInputRef.current?.focus();
+        }, []);
 
     return (
         <div>
