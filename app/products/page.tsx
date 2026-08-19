@@ -7,6 +7,7 @@ import Footer from "../Footer";
 import ProductCard from "../components/ProductCard";
 import ProductFilter from "../components/ProductFilter";
 import useFetch from "../hooks/useFetch";
+import { it } from "node:test";
 
 interface Product {
     id: number;
@@ -24,6 +25,10 @@ interface RawApipProduct {
     image: string;
 }
 
+const categoryOverrides: Record<number, string> = {
+    1: "Bags",
+};
+
 export default function ProductsPage() {
     const { data, loading, error } = useFetch<RawApipProduct[]>(
         "https://fakestoreapi.com/products"
@@ -36,7 +41,7 @@ export default function ProductsPage() {
         id: item.id,
         name: item.title,
         price: item.price,
-        category: item.category,
+        category: categoryOverrides[item.id] ?? item.category,
         image: item.image,
     }));
 
@@ -70,7 +75,9 @@ export default function ProductsPage() {
                 {!loading && !error && (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                         {filteredProducts.map((product) => (
-                            <ProductCard key={product.id} 
+                            <ProductCard 
+                            key={product.id} 
+                            id={product.id}
                             name={product.name} 
                             price={product.price} 
                             image={product.image}/>
