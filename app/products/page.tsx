@@ -2,12 +2,9 @@
 
 import { useEffect, useState } from "react";
 
-import Header from "../Header";
-import Footer from "../Footer";
 import ProductCard from "../components/ProductCard";
 import ProductFilter from "../components/ProductFilter";
 import useFetch from "../hooks/useFetch";
-import { it } from "node:test";
 
 interface Product {
     id: number;
@@ -55,7 +52,6 @@ export default function ProductsPage() {
 
     return (
         <>
-        <Header/>
         <main>
             <section className="text-center py-6">
                 <h1 className="text-3xl font-bold text-teal-700">Our Products</h1>
@@ -86,7 +82,6 @@ export default function ProductsPage() {
                 )}                
             </div>
         </main>
-        <Footer/>
         </>
     );
 }
